@@ -1,15 +1,26 @@
- var path = require('path');
- module.exports = {
-   entry: ['./main.js'],
-   output: {
-     path: __dirname,
-     filename: 'bundle.js'
+var path = require('path');
+var webpack = require('webpack');
+
+module.exports = {
+  entry: ['./main.js'],
+  output: {
+    path: __dirname,
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader'
+    }]
+  },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true
    },
-   module: {
-     loaders: [{
-       test: /\.js$/,
-       exclude: /node_modules/,
-       loader: 'babel-loader'
-     }]
-   }
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
  };
