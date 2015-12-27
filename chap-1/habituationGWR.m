@@ -1,7 +1,11 @@
 % This script sets up a very simple simulation of habituation
-% of the Aplysia gill withdrawal reflex. 
+% of the Aplysia gill withdrawal reflex.
 
 % The size of the output (B) decreases with each input (A)
+
+% INFO: Running with octave
+% - octave
+% - run habituationGWR.m
 
 function main
   startWeight = 4;
@@ -17,8 +21,8 @@ function main
   weight = startWeight;
 
   for t = 1:numberOfPulses,
-    outputPulses(t) = weight * inputPulses(t); % find the output 
-      
+    outputPulses(t) = weight * inputPulses(t); % find the output
+
     if inputPulses(t) > 0, % the input is present
       weight = weight * weigthDecrement;
     end
@@ -38,7 +42,7 @@ function plotInput (inputPulses, numberOfPulses)
   axis([0 numberOfPulses 0 1.1]) % reset the axis limits
   xlabel('time step') % label the x axis
   ylabel('input') % label the y asis
-  text(1,1,'A') % place the letter A near the top-left
+  text(1, 1, 'A') % place the letter A near the top-left
 endfunction
 
 function plotOutput(outputPulses, numberOfPulses, startWeight)

@@ -11,7 +11,10 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      loader: 'babel-loader',
+      query: {
+        presets: ['es2015']
+      }
     }]
   },
   devServer: {
@@ -19,8 +22,8 @@ module.exports = {
     hot: true,
     inline: true,
     progress: true
-   },
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
- };
+};
