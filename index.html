@@ -10,7 +10,6 @@
         stroke: #777;
         shape-rendering: crispEdges;
     }
-    
     .axis text {
         font-family: Lato;
         font-size: 13px;
@@ -20,10 +19,22 @@
 
 <body>
     <div class="container">
+
         <div class="jumbotron">
+            <h2>Simulation of habituation</h2>
             <svg id="visualisation" width="600" height="200"></svg>
             <svg id="visualisation2" width="600" height="200"></svg>
+
+            <h2>Response single neuron with positive feedback</h2>
+            <svg id="visualisation3" width="600" height="200"></svg>
+            <br>
+            <br>
+            <p>
+              Output when feedback > 1
+            </p>
+            <svg id="visualisation4" width="600" height="200"></svg>
         </div>
+
     </div>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="bundle.js"></script>

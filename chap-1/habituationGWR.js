@@ -6,9 +6,7 @@ function forDisplay(num, index) {
 }
 
 function nTimesArray(arr, nTimes) {
-  return [].concat.apply([], Array.apply(null, Array(nTimes)).map(function() {
-    return arr;
-  }));
+  return [].concat.apply([], Array.apply(null, Array(nTimes)).map(() => arr));
 }
 
 function getData() {
