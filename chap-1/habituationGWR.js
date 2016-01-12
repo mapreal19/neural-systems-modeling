@@ -1,7 +1,9 @@
+import renderChart from './renderChart.js';
+
 function forDisplay(num, index) {
   return {
-    time: index,
-    value: num
+    x: index,
+    y: num
   };
 }
 
@@ -30,58 +32,11 @@ function getData() {
   }
 }
 
-function render(data, selector) {
-  const vis = d3.select(selector),
-    WIDTH = 600,
-    HEIGHT = 200,
-    MARGINS = {
-      top: 20,
-      right: 20,
-      bottom: 20,
-      left: 50
-    },
-
-    xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 29]),
-
-    yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 4]),
-
-    xAxis = d3.svg.axis()
-    .scale(xScale),
-
-    yAxis = d3.svg.axis()
-    .scale(yScale)
-    .orient("left");
-
-  vis.append("svg:g")
-    .attr("class", "x axis")
-    .attr("transform", `translate(0,${HEIGHT - MARGINS.bottom})`)
-    .call(xAxis);
-
-  vis.append("svg:g")
-    .attr("class", "y axis")
-    .attr("transform", `translate(${MARGINS.left},0)`)
-    .call(yAxis);
-
-  const lineGen = d3.svg.line()
-    .x(function(d) {
-      return xScale(d.time);
-    })
-    .y(function(d) {
-      return yScale(d.value);
-    });
-
-  vis.append('svg:path')
-    .attr('d', lineGen(data))
-    .attr('stroke', 'green')
-    .attr('stroke-width', 2)
-    .attr('fill', 'none');
-}
-
 export default function InitChart() {
   const {
     inputPulses, outputPulses
   } = getData();
 
-  render(inputPulses, '#visualisation');
-  render(outputPulses, '#visualisation2');
+  renderChart(inputPulses, '#visualisation', {xDomain: [0, 29], yDomain: [0, 4]});
+  renderChart(outputPulses, '#visualisation2', {xDomain: [0, 29], yDomain: [0, 4]});
 }
